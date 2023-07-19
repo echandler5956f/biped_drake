@@ -43,14 +43,14 @@ class HURONKinematicModel : public KinematicModel {
 public:
   HURONKinematicModel () : KinematicModel(2)
   {
-    const double x_nominal_b = 0.0;
-    const double y_nominal_b = 0.077;
-    const double z_nominal_b = -0.510 - 0.405;
+    const double x_nominal_b = 0.0640419246633535+0.05;
+    const double y_nominal_b = 0.0827964816855771+0.1;
+    const double z_nominal_b = -1.1318+0.1;
 
     nominal_stance_.at(L) <<  x_nominal_b,   y_nominal_b, z_nominal_b;
     nominal_stance_.at(R) <<  x_nominal_b,  -y_nominal_b, z_nominal_b;
 
-    max_dev_from_nominal_  << 0.25, 0.15, 0.15;
+    max_dev_from_nominal_  << 0.375, 0.15, 0.325;
   }
 };
 

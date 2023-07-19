@@ -4,3 +4,4 @@ DO NOT MODIFY BY HAND!!!!
 """
 
 from .trunk_state_t import trunk_state_t
+from .biped_trunk_state_t import biped_trunk_state_t

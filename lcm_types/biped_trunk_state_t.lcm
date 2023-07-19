@@ -1,6 +1,6 @@
 package trunklcm;
 
-struct trunk_state_t
+struct biped_trunk_state_t
 {
     double timestamp;
 

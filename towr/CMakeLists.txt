@@ -77,11 +77,19 @@ target_include_directories(${PROJECT_NAME}
 ## Custom Executable ##
 #######################
 
-# MPC solve with mini cheetah, sending results over LCM
+# MPC solve for quadrupeds and bipeds, sending results over LCM
 include_directories("/usr/local/include/lcm/")   # lcm includes
 # find_package(lcm REQUIRED)
+
 add_executable(trunk_mpc trunk_mpc.cpp)
 target_link_libraries(trunk_mpc
+    PRIVATE
+    ${PROJECT_NAME}
+    ifopt::ifopt_ipopt
+    lcm)
+
+add_executable(biped_trunk_mpc biped_trunk_mpc.cpp)
+target_link_libraries(biped_trunk_mpc
     PRIVATE
     ${PROJECT_NAME}
     ifopt::ifopt_ipopt

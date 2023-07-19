@@ -3,3 +3,9 @@ from controllers.inverse_dynamics_controller import IDController
 from controllers.mptc_controller import MPTCController
 from controllers.pc_controller import PCController
 from controllers.clf_controller import CLFController
+
+from controllers.biped_basic_controller import BipedBasicController
+from controllers.biped_inverse_dynamics_controller import BipedIDController
+from controllers.biped_mptc_controller import BipedMPTCController
+from controllers.biped_pc_controller import BipedPCController
+from controllers.biped_clf_controller import BipedCLFController

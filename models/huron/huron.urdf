@@ -10,6 +10,21 @@
   <joint name="base_fixed" type="fixed">
     <origin rpy="0 0 0" xyz="0 0 0"/>
     <parent link="body"/>
+    <child link="dummy"/>
+  </joint>
+
+  <!-- dummy -->
+  <link name="dummy">
+    <inertial>
+      <origin rpy="0 0 0" xyz="7.32716003956635E-06 0.00483832570565224 4.61026188336433E-08"/>
+      <mass value="0.000863223621815312"/>
+      <inertia ixx="3.89940334430996E-07" ixy="2.9117647641293E-10" ixz="2.97838959000262E-10" iyy="5.82213619517231E-07" iyz="1.83208753540344E-12" izz="3.4260620679022E-07"/>
+    </inertial>
+  </link>
+
+  <joint name="dummy_fixed" type="fixed">
+    <origin rpy="0 0 -1.57079633" xyz="0 0 0"/>
+    <parent link="dummy"/>
     <child link="base_footprint"/>
   </joint>
 
@@ -23,7 +38,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/base_link.STL"/>
+        <mesh filename="meshes/stl_meshes/base_link.STL" scale="1 1 1"/>
       </geometry>
     </visual>
   </link>
@@ -54,194 +69,13 @@
     <parent link="base_footprint"/>
     <child link="imu_link"/>
   </joint>
-  <!-- right hip yaw joint -->
-  <link name="imu_link"/>
-  <joint name="r_hip_yaw_joint" type="revolute">
-    <origin rpy="0 0 3.141592654" xyz="0.0774999999999944 0 -0.1451242"/>
-    <parent link="base_footprint"/>
-    <child link="r_hip_yaw_link"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="3"/>
-    <!--<dynamics damping="0.5" friction="5"/>-->
-  </joint>
-  <transmission name="r_hip_yaw_joint_tran">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="r_hip_yaw_joint">
-    </joint>
-    <actuator name="r_hip_yaw_joint_motor">
-    </actuator>
-  </transmission>
-  <!-- right hip yaw link -->
-  <link name="r_hip_yaw_link">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="meshes/r_hip_yaw_link.STL"/>
-      </geometry>
-    </visual>
-    <inertial>
-      <origin rpy="0 0 0" xyz="0.0006244 0.00052023 0.063505"/>
-      <mass value="1.6968"/>
-      <inertia ixx="0.0022729" ixy="-5.6517E-10" ixz="6.6464E-06" iyy="0.0026746" iyz="5.6889E-09" izz="0.0012354"/>
-    </inertial>
-  </link>
-  <!-- right hip roll joint-->
-  <joint name="r_hip_roll_joint" type="revolute">
-    <origin rpy="1.570796327 0 0" xyz="0 0 0"/>
-    <parent link="r_hip_yaw_link"/>
-    <child link="r_hip_roll_link"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="1000" lower="-0.5236" upper="0.01" velocity="3"/>
-    <!--<dynamics damping="0.5" friction="5"/>-->
-  </joint>
-  <transmission name="r_hip_roll_joint_tran">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="r_hip_roll_joint">
-    </joint>
-    <actuator name="r_hip_roll_joint_motor">
-    </actuator>
-  </transmission>
-  <!-- right hip roll link -->
-  <link name="r_hip_roll_link">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="meshes/r_hip_roll_link.STL"/>
-      </geometry>
-    </visual>
-    <inertial>
-      <origin rpy="0 0 0" xyz="-0.07196 0.0061152 -0.00052563"/>
-      <mass value="1.1884"/>
-      <inertia ixx="0.00098222" ixy="9.8947E-08" ixz="9.2484E-09" iyy="0.00097045" iyz="9.7414E-08" izz="0.00092365"/>
-    </inertial>
-  </link>
-  <!-- right hip pitch joint -->
-  <joint name="r_hip_pitch_joint" type="revolute">
-    <origin rpy="-1.570796327 0 -1.570796327" xyz="0 0 0"/>
-    <parent link="r_hip_roll_link"/>
-    <child link="r_hip_pitch_link"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="1000" lower="-1.2217" upper="1.2217" velocity="3"/>
-    <!--<dynamics damping="0.5" friction="5"/>-->
-  </joint>
-  <transmission name="r_hip_pitch_joint_tran">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="r_hip_pitch_joint">
-    </joint>
-    <actuator name="r_hip_pitch_joint_motor">
-    </actuator>
-  </transmission>
-  <!-- right hip pitch link -->
-  <link name="r_hip_pitch_link">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="meshes/r_hip_pitch_link.STL"/>
-      </geometry>
-    </visual>
-    <inertial>
-      <origin rpy="0 0 0" xyz="0.26753 4.9957E-05 -0.053132"/>
-      <mass value="4.2544"/>
-      <inertia ixx="0.0034501" ixy="-2.7593E-09" ixz="-0.0019797" iyy="0.010035" iyz="2.5351E-10" izz="0.01009"/>
-    </inertial>
-  </link>
-  <!-- right knee pitch joint -->
-  <joint name="r_knee_pitch_joint" type="revolute">
-    <origin rpy="0 0 0" xyz="0.512778478308813 4.99999999867273E-05 -1.66647320091612E-05"/>
-    <parent link="r_hip_pitch_link"/>
-    <child link="r_knee_pitch_link"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="1000" lower="-1.570796327" upper="1.570796327" velocity="3"/>
-    <!--<dynamics damping="0.5" friction="5"/>-->
-  </joint>
-  <transmission name="r_knee_pitch_joint_tran">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="r_knee_pitch_joint">
-    </joint>
-    <actuator name="r_knee_pitch_joint_motor">
-    </actuator>
-  </transmission>
-  <!-- right knee pitch link -->
-  <link name="r_knee_pitch_link">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="meshes/r_knee_pitch_link.STL"/>
-      </geometry>
-    </visual>
-    <inertial>
-      <origin rpy="0 0 0" xyz="0.13396 0.00063335 -0.00486"/>
-      <mass value="3.4875"/>
-      <inertia ixx="0.0064812" ixy="1.2949E-05" ixz="2.8064E-05" iyy="0.019762" iyz="-1.0389E-05" izz="0.017354"/>
-    </inertial>
-  </link>
-  <!-- right ankle pitch joint -->
-  <joint name="r_ankle_pitch_joint" type="revolute">
-    <origin rpy="0 0 0.0" xyz="0.370000000000006 -3.16358749707368E-05 -0.00249999999999943"/>
-    <parent link="r_knee_pitch_link"/>
-    <child link="r_ankle_pitch_link"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="1000" lower="-0.5236" upper="0.1745" velocity="3"/>
-    <!--<dynamics damping="0.5" friction="2.0"/>-->
-  </joint>
-  <transmission name="r_ankle_pitch_joint_tran">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="r_ankle_pitch_joint">
-    </joint>
-    <actuator name="r_ankle_pitch_joint_motor">
-    </actuator>
-  </transmission>
-  <!-- right ankle pitch link -->
-  <link name="r_ankle_pitch_link">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="meshes/r_ankle_pitch_link.STL"/>
-      </geometry>
-    </visual>
-    <inertial>
-      <origin rpy="0 0 0" xyz="-0.029867 0.001045 0.000556"/>
-      <mass value="2.4242"/>
-      <inertia ixx="0.0025143" ixy="-0.00025651" ixz="1.5321E-12" iyy="0.0045125" iyz="9.9589E-10" izz="0.0049235"/>
-    </inertial>
-  </link>
-  <!-- right ankle roll joint -->
-  <joint name="r_ankle_roll_joint" type="revolute">
-    <origin rpy="1.570796327 0 0" xyz="0 0 0"/>
-    <parent link="r_ankle_pitch_link"/>
-    <child link="r_ankle_roll_link"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="1000" lower="-0.3491" upper="0.3491" velocity="3"/>
-    <!-- <dynamics damping="0.5" friction="2.0"/> -->
-  </joint>
-  <transmission name="r_ankle_roll_joint_tran">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="r_ankle_roll_joint">
-    </joint>
-    <actuator name="r_ankle_roll_joint_motor">
-    </actuator>
-  </transmission>
-  <!-- right ankle roll link -->
-  <link name="r_ankle_roll_link">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="meshes/r_ankle_roll_link.STL"/>
-      </geometry>
-    </visual>
-    <inertial>
-      <origin rpy="0 0 0" xyz="0.073422 7.2094E-05 0.063933"/>
-      <mass value="1.8533"/>
-      <inertia ixx="0.0086813" ixy="1.0356E-05" ixz="0.00024346" iyy="0.0084051" iyz="-0.00012301" izz="0.0013018"/>
-    </inertial>
-  </link>
   <!-- left hip yaw joint -->
-  <joint name="l_hip_yaw_joint" type="revolute">
+  <joint name="l_hip_yaw_joint" type="continuous">
     <origin rpy="0 0 -0.0" xyz="-0.0775 0 -0.14512"/>
     <parent link="base_footprint"/>
     <child link="l_hip_yaw_link"/>
     <axis xyz="0 0 1"/>
-    <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="3"/>
+    <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="40"/>
     <!-- <dynamics damping="0.5" friction="5"/> -->
   </joint>
   <transmission name="l_hip_yaw_joint_tran">
@@ -256,7 +90,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/l_hip_yaw_link.STL"/>
+        <mesh filename="meshes/stl_meshes/l_hip_yaw_link.STL" scale="1 1 1"/>
       </geometry>
     </visual>
     <inertial>
@@ -266,12 +100,12 @@
     </inertial>
   </link>
   <!-- left hip roll joint-->
-  <joint name="l_hip_roll_joint" type="revolute">
+  <joint name="l_hip_roll_joint" type="continuous">
     <origin rpy="1.570796327 0 3.141592654" xyz="0 0 0"/>
     <parent link="l_hip_yaw_link"/>
     <child link="l_hip_roll_link"/>
     <axis xyz="0 0 1"/>
-    <limit effort="1000" lower="-0.01" upper="0.5236" velocity="3"/>
+    <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="40"/>
     <!-- <dynamics damping="0.5" friction="5"/> -->
   </joint>
   <transmission name="l_hip_roll_joint_tran">
@@ -286,7 +120,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/l_hip_roll_link.STL"/>
+        <mesh filename="meshes/stl_meshes/l_hip_roll_link.STL" scale="1 1 1"/>
       </geometry>
     </visual>
     <inertial>
@@ -296,12 +130,12 @@
     </inertial>
   </link>
   <!-- left hip pitch joint -->
-  <joint name="l_hip_pitch_joint" type="revolute">
+  <joint name="l_hip_pitch_joint" type="continuous">
     <origin rpy="-1.570796327 0 -1.570796327" xyz="0 0 0"/>
     <parent link="l_hip_roll_link"/>
     <child link="l_hip_pitch_link"/>
     <axis xyz="0 0 1"/>
-    <limit effort="1000" lower="-1.2217" upper="1.2217" velocity="3"/>
+    <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="40"/>
     <!-- <dynamics damping="0.5" friction="5"/> -->
   </joint>
   <transmission name="l_hip_pitch_joint_tran">
@@ -316,7 +150,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/l_hip_pitch_link.STL"/>
+        <mesh filename="meshes/stl_meshes/l_hip_pitch_link.STL" scale="1 1 1"/>
       </geometry>
     </visual>
     <inertial>
@@ -326,12 +160,12 @@
     </inertial>
   </link>
   <!-- left knee pitch joint -->
-  <joint name="l_knee_pitch_joint" type="revolute">
+  <joint name="l_knee_pitch_joint" type="continuous">
     <origin rpy="0 0 0" xyz="0.512778478308813 5.00027201116859E-05 1.66647320003488E-05"/>
     <parent link="l_hip_pitch_link"/>
     <child link="l_knee_pitch_link"/>
     <axis xyz="0 0 1"/>
-    <limit effort="1000" lower="-1.570796327" upper="1.570796327" velocity="3"/>
+    <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="40"/>
     <!-- <dynamics damping="0.5" friction="5"/> -->
   </joint>
   <transmission name="l_knee_pitch_joint_tran">
@@ -346,7 +180,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/l_knee_pitch_link.STL"/>
+        <mesh filename="meshes/stl_meshes/l_knee_pitch_link.STL" scale="1 1 1"/>
       </geometry>
     </visual>
     <inertial>
@@ -356,12 +190,12 @@
     </inertial>
   </link>
   <!-- left ankle pitch joint -->
-  <joint name="l_ankle_pitch_joint" type="revolute">
+  <joint name="l_ankle_pitch_joint" type="continuous">
     <origin rpy="0 0 0.0" xyz="0.3715 3.1633E-05 0.0025"/>
     <parent link="l_knee_pitch_link"/>
     <child link="l_ankle_pitch_link"/>
     <axis xyz="0 0 1"/>
-    <limit effort="1000" lower="-0.5236" upper="0.1745" velocity="3"/>
+    <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="40"/>
     <!-- <dynamics damping="0.5" friction="2.0"/> -->
   </joint>
   <transmission name="l_ankle_pitch_joint_tran">
@@ -376,7 +210,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/l_ankle_pitch_link.STL"/>
+        <mesh filename="meshes/stl_meshes/l_ankle_pitch_link.STL" scale="1 1 1"/>
       </geometry>
     </visual>
     <inertial>
@@ -386,12 +220,12 @@
     </inertial>
   </link>
   <!-- left ankle roll pitch -->
-  <joint name="l_ankle_roll_joint" type="revolute">
+  <joint name="l_ankle_roll_joint" type="continuous">
     <origin rpy="1.570796327 0 0" xyz="0 0 0"/>
     <parent link="l_ankle_pitch_link"/>
-    <child link="l_ankle_roll_link"/>
+    <child link="L_FOOT"/>
     <axis xyz="0 0 1"/>
-    <limit effort="1000" lower="-0.3491" upper="0.3491" velocity="3"/>
+    <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="40"/>
     <!-- <dynamics damping="0.5" friction="2.0"/> -->
   </joint>
   <transmission name="l_ankle_roll_joint_tran">
@@ -402,11 +236,11 @@
     </actuator>
   </transmission>
   <!-- left ankle roll link -->
-  <link name="l_ankle_roll_link">
+  <link name="L_FOOT">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="meshes/l_ankle_roll_link.STL"/>
+        <mesh filename="meshes/stl_meshes/l_ankle_roll_link.STL" scale="1 1 1"/>
       </geometry>
     </visual>
     <inertial>
@@ -415,5 +249,187 @@
       <inertia ixx="0.008682" ixy="-1.0255E-05" ixz="0.00024351" iyy="0.0084057" iyz="0.00012332" izz="0.0013019"/>
     </inertial>
   </link>
+  <!-- right hip yaw joint -->
+  <link name="imu_link"/>
+  <joint name="r_hip_yaw_joint" type="continuous">
+    <origin rpy="0 0 3.141592654" xyz="0.0774999999999944 0 -0.1451242"/>
+    <parent link="base_footprint"/>
+    <child link="r_hip_yaw_link"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="40"/>
+    <!--<dynamics damping="0.5" friction="5"/>-->
+  </joint>
+  <transmission name="r_hip_yaw_joint_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="r_hip_yaw_joint">
+    </joint>
+    <actuator name="r_hip_yaw_joint_motor">
+    </actuator>
+  </transmission>
+  <!-- right hip yaw link -->
+  <link name="r_hip_yaw_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl_meshes/r_hip_yaw_link.STL" scale="1 1 1"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0006244 0.00052023 0.063505"/>
+      <mass value="1.6968"/>
+      <inertia ixx="0.0022729" ixy="-5.6517E-10" ixz="6.6464E-06" iyy="0.0026746" iyz="5.6889E-09" izz="0.0012354"/>
+    </inertial>
+  </link>
+  <!-- right hip roll joint-->
+  <joint name="r_hip_roll_joint" type="continuous">
+    <origin rpy="1.570796327 0 0" xyz="0 0 0"/>
+    <parent link="r_hip_yaw_link"/>
+    <child link="r_hip_roll_link"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="40"/>
+    <!--<dynamics damping="0.5" friction="5"/>-->
+  </joint>
+  <transmission name="r_hip_roll_joint_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="r_hip_roll_joint">
+    </joint>
+    <actuator name="r_hip_roll_joint_motor">
+    </actuator>
+  </transmission>
+  <!-- right hip roll link -->
+  <link name="r_hip_roll_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl_meshes/r_hip_roll_link.STL" scale="1 1 1"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.07196 0.0061152 -0.00052563"/>
+      <mass value="1.1884"/>
+      <inertia ixx="0.00098222" ixy="9.8947E-08" ixz="9.2484E-09" iyy="0.00097045" iyz="9.7414E-08" izz="0.00092365"/>
+    </inertial>
+  </link>
+  <!-- right hip pitch joint -->
+  <joint name="r_hip_pitch_joint" type="continuous">
+    <origin rpy="-1.570796327 0 -1.570796327" xyz="0 0 0"/>
+    <parent link="r_hip_roll_link"/>
+    <child link="r_hip_pitch_link"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="40"/>
+    <!--<dynamics damping="0.5" friction="5"/>-->
+  </joint>
+  <transmission name="r_hip_pitch_joint_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="r_hip_pitch_joint">
+    </joint>
+    <actuator name="r_hip_pitch_joint_motor">
+    </actuator>
+  </transmission>
+  <!-- right hip pitch link -->
+  <link name="r_hip_pitch_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl_meshes/r_hip_pitch_link.STL" scale="1 1 1"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.26753 4.9957E-05 -0.053132"/>
+      <mass value="4.2544"/>
+      <inertia ixx="0.0034501" ixy="-2.7593E-09" ixz="-0.0019797" iyy="0.010035" iyz="2.5351E-10" izz="0.01009"/>
+    </inertial>
+  </link>
+  <!-- right knee pitch joint -->
+  <joint name="r_knee_pitch_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="0.512778478308813 4.99999999867273E-05 -1.66647320091612E-05"/>
+    <parent link="r_hip_pitch_link"/>
+    <child link="r_knee_pitch_link"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="40"/>
+    <!--<dynamics damping="0.5" friction="5"/>-->
+  </joint>
+  <transmission name="r_knee_pitch_joint_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="r_knee_pitch_joint">
+    </joint>
+    <actuator name="r_knee_pitch_joint_motor">
+    </actuator>
+  </transmission>
+  <!-- right knee pitch link -->
+  <link name="r_knee_pitch_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl_meshes/r_knee_pitch_link.STL" scale="1 1 1"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.13396 0.00063335 -0.00486"/>
+      <mass value="3.4875"/>
+      <inertia ixx="0.0064812" ixy="1.2949E-05" ixz="2.8064E-05" iyy="0.019762" iyz="-1.0389E-05" izz="0.017354"/>
+    </inertial>
+  </link>
+  <!-- right ankle pitch joint -->
+  <joint name="r_ankle_pitch_joint" type="continuous">
+    <origin rpy="0 0 0.0" xyz="0.370000000000006 -3.16358749707368E-05 -0.00249999999999943"/>
+    <parent link="r_knee_pitch_link"/>
+    <child link="r_ankle_pitch_link"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="40"/>
+    <!--<dynamics damping="0.5" friction="2.0"/>-->
+  </joint>
+  <transmission name="r_ankle_pitch_joint_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="r_ankle_pitch_joint">
+    </joint>
+    <actuator name="r_ankle_pitch_joint_motor">
+    </actuator>
+  </transmission>
+  <!-- right ankle pitch link -->
+  <link name="r_ankle_pitch_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl_meshes/r_ankle_pitch_link.STL" scale="1 1 1"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.029867 0.001045 0.000556"/>
+      <mass value="2.4242"/>
+      <inertia ixx="0.0025143" ixy="-0.00025651" ixz="1.5321E-12" iyy="0.0045125" iyz="9.9589E-10" izz="0.0049235"/>
+    </inertial>
+  </link>
+  <!-- right ankle roll joint -->
+  <joint name="r_ankle_roll_joint" type="continuous">
+    <origin rpy="1.570796327 0 0" xyz="0 0 0"/>
+    <parent link="r_ankle_pitch_link"/>
+    <child link="R_FOOT"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="40"/>
+    <!-- <dynamics damping="0.5" friction="2.0"/> -->
+  </joint>
+  <transmission name="r_ankle_roll_joint_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="r_ankle_roll_joint">
+    </joint>
+    <actuator name="r_ankle_roll_joint_motor">
+    </actuator>
+  </transmission>
+  <!-- right ankle roll link -->
+  <link name="R_FOOT">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl_meshes/r_ankle_roll_link.STL" scale="1 1 1"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.073422 7.2094E-05 0.063933"/>
+      <mass value="1.8533"/>
+      <inertia ixx="0.0086813" ixy="1.0356E-05" ixz="0.00024346" iyy="0.0084051" iyz="-0.00012301" izz="0.0013018"/>
+    </inertial>
+  </link>
 </robot>
+
 

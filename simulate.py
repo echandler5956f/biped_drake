@@ -6,11 +6,12 @@ from planners import BasicTrunkPlanner, TowrTrunkPlanner
 import os
 import sys
 
+
 ############### Common Parameters ###################
 show_trunk_model = True
 use_lcm = False
 
-planning_method = "towr"   # "towr" or "basic"
+planning_method = "basic"   # "towr" or "basic"
 control_method = "ID"      # ID = Inverse Dynamics (standard QP), 
                            # B = Basic (simple joint-space PD), 
                            # MPTC = task-space passivity
@@ -28,8 +29,7 @@ make_plots = False
 
 # Drake only loads things relative to the drake path, so we have to do some hacking
 # to load an arbitrary file
-# robot_description_path = "./models/solo_12/solo_12.urdf"
-robot_description_path = "./models/huron/huron.urdf"
+robot_description_path = "./models/solo_12/solo_12.urdf"
 drake_path = getDrakePath()
 robot_description_file = "drake/" + os.path.relpath(robot_description_path, start=drake_path)
 
@@ -169,16 +169,12 @@ else:
 
 # Set initial states
 plant_context = diagram.GetMutableSubsystemContext(plant, diagram_context)
-# q0 = np.asarray([ 1.0, 0.0, 0.0, 0.0,     # base orientation
-#                   0.0, 0.0, 0.2282,       # base position
-#                   0.0,0.8, -1.6, 
-#                   0.0,0.8, -1.6, 
-#                   0.0,0.8, -1.6, 
-#                   0.0,0.8, -1.6])
 q0 = np.asarray([ 1.0, 0.0, 0.0, 0.0,     # base orientation
-                  0.0, 0.0, 0.510 + 0.405,       # base position
-                  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 
-                  0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+                  0.0, 0.0, 0.2282,       # base position
+                  0.0,0.8, -1.6, 
+                  0.0,0.8, -1.6, 
+                  0.0,0.8, -1.6, 
+                  0.0,0.8, -1.6])
 qd0 = np.zeros(plant.num_velocities())
 plant.SetPositions(plant_context,q0)
 plant.SetVelocities(plant_context,qd0)

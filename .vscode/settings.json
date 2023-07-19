@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.bzz": "julia",
+        "array": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "vector": "cpp",
+        "string_view": "cpp"
+    }
+}

@@ -107,8 +107,7 @@ int main(int argc, char *argv[]) {
     formulation.terrain_ = std::make_shared<FlatGround>(0.0);
     
     // Kinematic limits and dynamic parameters
-    // formulation.model_ = RobotModel(RobotModel::BiQu);
-    formulation.model_ = RobotModel(RobotModel::HURON);
+    formulation.model_ = RobotModel(RobotModel::BiQu);
 
     // initial position
     auto nominal_stance_B = formulation.model_.kinematic_model_->GetNominalStanceInBase(); 
@@ -128,10 +127,10 @@ int main(int argc, char *argv[]) {
 
     // Parameters defining contact sequence and default durations. We use
     // a GaitGenerator with some predifined gaits
-    auto gait_gen_ = GaitGenerator::MakeGaitGenerator(2);
+    auto gait_gen_ = GaitGenerator::MakeGaitGenerator(4);
     auto id_gait   = static_cast<GaitGenerator::Combos>(gait_type); // 0=walk, 1=flying trot, 2=pace, 3=bound, 4=gallop
     gait_gen_->SetCombo(id_gait);
-    for (int ee=0; ee<2; ++ee) {
+    for (int ee=0; ee<4; ++ee) {
         formulation.params_.ee_phase_durations_.push_back(gait_gen_->GetPhaseDurations(total_duration, ee));
         formulation.params_.ee_in_contact_at_start_.push_back(gait_gen_->IsInContactAtStart(ee));
     }
@@ -166,12 +165,12 @@ int main(int argc, char *argv[]) {
     lcm::LCM lcm;
     trunklcm::trunk_state_t state;
 
-    // double dt = 5e-3;
-    // for (double t=0; t<total_duration; t=t+dt) {
-    //     publish_trunk_state(solution, t);
-    // }
+    double dt = 5e-3;
+    for (double t=0; t<total_duration; t=t+dt) {
+        publish_trunk_state(solution, t);
+    }
 
-    // // send one final message including the finished flag
-    // publish_trunk_state(solution, total_duration, true);
+    // send one final message including the finished flag
+    publish_trunk_state(solution, total_duration, true);
 }
 

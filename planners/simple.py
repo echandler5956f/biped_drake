@@ -125,7 +125,7 @@ class BasicTrunkPlanner(LeafSystem):
         #self.output_dict["p_body"] += np.array([0,0,0.05])
         #self.OrientationTest(context.get_time())
         #self.EdgeTest()
-        #self.RaiseFoot(context.get_time())
+        self.RaiseFoot(context.get_time())
 
     def SetGeometryOutputs(self, context, output):
         fpv = output.get_mutable_value()

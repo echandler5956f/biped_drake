@@ -1,6 +1,6 @@
-# Quadruped Drake
+# Biped Drake
 
-This repository contains code for the simulation and control of quadruped robots using [Drake](https://drake.mit.edu).
+This repository contains code for the simulation and control of quadruped and biped robots using [Drake](https://drake.mit.edu).
 
 ![](demo.gif)
 
@@ -16,7 +16,7 @@ This repository contains code for the simulation and control of quadruped robots
 
 ## Installation
 
-Clone this repository: `git clone https://github.com/vincekurtz/quadruped_drake.git`
+Clone this repository: `git clone https://github.com/echandler5956f/biped_drake.git`
 
 Compile C\+\+ code (includes TOWR and custom LCM bindings for interface with drake):
 ```
