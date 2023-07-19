@@ -72,6 +72,8 @@ struct RobotModel {
                Hyq,     ///< four-legged robot from IIT
                Anymal,  ///< four-legged robot from Anybotics
                MiniCheetah, ///< four-legged robot from MIT
+               BiQu,
+               HURON,
                ROBOT_COUNT };
 
 
@@ -89,6 +91,8 @@ const static std::map<RobotModel::Robot, std::string> robot_names =
   {RobotModel::Biped,   "Biped"},
   {RobotModel::Hyq,     "Hyq"},
   {RobotModel::Anymal,  "Anymal"},
+  {RobotModel::BiQu,    "BiQu"},
+  {RobotModel::HURON,   "HURON"},
   {RobotModel::MiniCheetah,  "MiniCheetah"}
 };
 

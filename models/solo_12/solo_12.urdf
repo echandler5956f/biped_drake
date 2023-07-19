@@ -1,0 +1,594 @@
+<?xml version="1.0" ?>
+<robot name="solo_12" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!--!!!!!!!!!!!!!!!!!!BODY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <link name="body">
+        <inertial>
+            <mass value="1.16115091"/>
+            <origin xyz="0.0 0.0 0.0"/>
+            <inertia ixx="0.00578574" ixy="0.0" ixz="0.0" iyy="0.01938108" iyz="0.0" izz="0.02476124"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="meshes/solo12/solo_12_base.stl"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.388 0.175 0.05"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+        </collision>
+    </link>
+
+    <!--!!!!!!!!!!!! Front Left Leg !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <joint name="torso_to_abduct_fl_j" type="continuous">
+        <axis xyz="1 0 0"/>
+        <origin rpy="0 0 0" xyz="0.1946 0.0875 0"/>
+        <parent link="body"/>
+        <child link="abduct_fl"/>
+        <limit effort="18" lower="-1.6" upper="1.6" velocity="40"/>
+    </joint>
+    <link name="abduct_fl">
+        <inertial>
+            <mass value="0.14853845"/>
+            <origin rpy="0 0 0" xyz="-0.07870700 0.01 0."/>
+            <inertia ixx="0.00003024" ixy="0.00004671" ixz="0.0" iyy="0.00041193" iyz="0.0" izz="0.00041107"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="meshes/solo12/solo12_hip_fe_fl.stl"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0.01950 0 0"/>
+        </visual>
+        <!--
+        <collision>
+            <geometry>
+                <cylinder length ="0.02" radius = "0.0475"/>
+            </geometry>
+            <origin rpy="0 1.5708 -1.5708" xyz="-0.055 0.0 0.0"/>
+        </collision>
+        <collision>
+            <geometry>
+                <cylinder length ="0.06" radius = "0.0475"/>
+            </geometry>
+            <origin rpy="1.5708 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </collision>
+        -->
+    </link>
+
+    <joint name="abduct_fl_to_thigh_fl_j" type="continuous">
+        <axis xyz="0 1 0"/>
+        <origin rpy="0 0 0" xyz="0 0.014 0"/>
+        <parent link="abduct_fl"/>
+        <child link="thigh_fl"/>
+        <limit effort="18" lower="-2.6" upper="2.6" velocity="40"/>
+    </joint>
+    <link name="thigh_fl">
+        <inertial>
+            <mass value="0.14853845"/>
+            <origin rpy="0 0 0" xyz="0.00001377 0.01935853 -0.07870700"/>
+            <inertia ixx="0.00041107" ixy="0.0" ixz="0.0" iyy="0.00041193" iyz="0.00004671" izz="0.00003024"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="meshes/solo12/solo12_upper_leg_left_side.stl"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+        </visual>
+        <!--
+        <collision>
+            <geometry>
+                <cylinder length ="0.21" radius = "0.025"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.105"/>
+        </collision>
+        -->
+    </link>
+
+    <joint name="thigh_fl_to_knee_fl_j" type="continuous">
+        <axis xyz="0 1 0"/>
+        <origin rpy="0 0 0" xyz="0 0.03745 -0.16"/>
+        <parent link="thigh_fl"/>
+        <child link="shank_fl"/>
+        <limit effort="26" lower="-2.6" upper="2.6" velocity="26"/>
+    </joint>
+    <link name="shank_fl">
+        <inertial>
+            <mass value="0.03070001"/>
+            <origin rpy="0 0 0" xyz="0.0 0.00787644 -0.08928215"/>
+            <inertia ixx="0.00012024" ixy="0.0" ixz="0.0" iyy="0.00012029" iyz="0.00000305" izz="0.00000216"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="meshes/solo12/solo12_lower_leg_left_side.stl"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+        </visual>
+        <!--
+        <collision>
+            <geometry>
+                <cylinder length ="0.19" radius = "0.015"/>
+            </geometry>
+            <origin rpy="0.0 3.141592 0.0" xyz="0 0 -0.095"/>
+        </collision>
+        <collision>
+            <geometry>
+                <sphere radius = "0.0175"/>
+            </geometry>
+            <origin rpy="0.0 3.141592 0.0" xyz="0 0 -0.195"/>
+        </collision>
+        -->
+    </link>
+
+
+    <!--!!!!!!!!!!!! Front Right Leg !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <joint name="torso_to_abduct_fr_j" type="continuous">
+        <axis xyz="1 0 0"/>
+        <origin rpy="0 0 0" xyz="0.1946 -0.0875 0"/>
+        <parent link="body"/>
+        <child link="abduct_fr"/>
+        <limit effort="18" lower="-1.6" upper="1.6" velocity="40"/>
+    </joint>
+    <link name="abduct_fr">
+        <inertial>
+            <mass value="0.14853845"/>
+            <origin rpy="0 0 0" xyz="-0.07870700 -0.01 0."/>
+            <inertia ixx="0.00003024" ixy="-0.00004671" ixz="0.0" iyy="0.00041193" iyz="0.0" izz="0.00041107"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="meshes/solo12/solo12_hip_fe_fr.stl"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0.01950 0 0"/>
+        </visual>
+        <!--
+        <collision>
+            <geometry>
+                <cylinder length ="0.02" radius = "0.0475"/>
+            </geometry>
+            <origin rpy="3.141592 1.5708 1.5708" xyz="-0.055 0 0"/>
+        </collision>
+        <collision>
+            <geometry>
+                <cylinder length ="0.06" radius = "0.0475"/>
+            </geometry>
+            <origin rpy="1.5708 0.0 0.0" xyz="-0.055 0 0"/>
+        </collision>
+        -->
+    </link>
+
+    <joint name="abduct_fr_to_thigh_fr_j" type="continuous">
+        <axis xyz="0 1 0"/>
+        <origin rpy="0 0 0" xyz="0 -0.014 0"/>
+        <parent link="abduct_fr"/>
+        <child link="thigh_fr"/>
+        <limit effort="18" lower="-2.6" upper="2.6" velocity="40"/>
+    </joint>
+    <link name="thigh_fr">
+        <inertial>
+            <mass value="0.14853845"/>
+            <origin rpy="0 0 0" xyz="-0.00001377 -0.01935853 -0.07870700"/>
+            <inertia ixx="0.00041107" ixy="0.0" ixz="0.0" iyy="0.00041193" iyz="-0.00004671" izz="0.00003024"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="meshes/solo12/solo12_upper_leg_right_side.stl"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+        </visual>
+        <!--
+        <collision>
+            <geometry>
+                <cylinder length ="0.21" radius = "0.025"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.105"/>
+        </collision>
+        -->
+    </link>
+
+    <joint name="thigh_fr_to_knee_fr_j" type="continuous">
+        <axis xyz="0 1 0"/>
+        <origin rpy="0 0 0" xyz="0 -0.03745 -0.16"/>
+        <parent link="thigh_fr"/>
+        <child link="shank_fr"/>
+        <limit effort="26" lower="-2.6" upper="2.6" velocity="26"/>
+    </joint>
+    <link name="shank_fr">
+        <inertial>
+            <mass value="0.03070001"/>
+            <origin rpy="0 0 0" xyz="0.0 0.00787644 -0.08928215"/>
+            <inertia ixx="0.00012024" ixy="0.0" ixz="0.0" iyy="0.00012029" iyz="-0.00000305" izz="0.00000216"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="meshes/solo12/solo12_lower_leg_right_side.stl"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+        </visual>
+        <!--
+        <collision>
+            <geometry>
+                <cylinder length ="0.19" radius = "0.015"/>
+            </geometry>
+            <origin rpy="0.0 3.141592 0.0" xyz="0.0 0.0 -0.095"/>
+        </collision>
+        <collision>
+            <geometry>
+                <sphere radius = "0.0175"/>
+            </geometry>
+            <origin rpy="0.0 3.141592 0" xyz="0.0 0.0 -0.195"/>
+        </collision>
+        -->
+    </link>
+
+
+    <!--!!!!!!!!!!!! Hind Left Leg !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <joint name="torso_to_abduct_hl_j" type="continuous">
+        <axis xyz="1 0 0"/>
+        <origin rpy="0 0 0" xyz="-0.1946 0.0875 0"/>
+        <parent link="body"/>
+        <child link="abduct_hl"/>
+        <limit effort="18" lower="-1.6" upper="1.6" velocity="40"/>
+    </joint>
+    <link name="abduct_hl">
+        <inertial>
+            <mass value="0.14853845"/>
+            <origin rpy="0 0 0" xyz="0.07870700 0.01 0."/>
+            <inertia ixx="0.00003024" ixy="0.00004671" ixz="0.0" iyy="0.00041193" iyz="0.0" izz="0.00041107"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="meshes/solo12/solo12_hip_fe_hl.stl"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="-0.01950 0 0"/>
+        </visual>
+        <!--
+        <collision>
+            <geometry>
+                <cylinder length ="0.02" radius = "0.0475"/>
+            </geometry>
+            <origin rpy="3.141592 1.5708 -1.5708" xyz="0.055 0 0"/>
+        </collision>
+        <collision>
+            <geometry>
+                <cylinder length ="0.06" radius = "0.0475"/>
+            </geometry>
+            <origin rpy="1.5708 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </collision>
+        -->
+    </link>
+
+    <joint name="abduct_hl_to_thigh_hl_j" type="continuous">
+        <axis xyz="0 1 0"/>
+        <origin rpy="0 0 0" xyz="0 0.014 0"/>
+        <parent link="abduct_hl"/>
+        <child link="thigh_hl"/>
+        <limit effort="18" lower="-2.6" upper="2.6" velocity="40"/>
+    </joint>
+    <link name="thigh_hl">
+        <inertial>
+            <mass value="0.14853845"/>
+            <origin rpy="0 0 0" xyz="0.00001377 0.01935853 -0.07870700"/>
+            <inertia ixx="0.00041107" ixy="0.0" ixz="0.0" iyy="0.00041193" iyz="0.00004671" izz="0.00003024"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="meshes/solo12/solo12_upper_leg_left_side.stl"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+        </visual>
+        <!--
+        <collision>
+            <geometry>
+                <cylinder length ="0.21" radius = "0.025"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.105"/>
+        </collision>
+        -->
+    </link>
+
+    <joint name="thigh_hl_to_knee_hl_j" type="continuous">
+        <axis xyz="0 1 0"/>
+        <origin rpy="0 0 0" xyz="0 0.03745 -0.16"/>
+        <parent link="thigh_hl"/>
+        <child link="shank_hl"/>
+        <limit effort="26" lower="-2.6" upper="2.6" velocity="26"/>
+    </joint>
+    <link name="shank_hl">
+        <inertial>
+            <mass value="0.03070001"/>
+            <origin rpy="0 0 0" xyz="0.0 0.00787644 -0.08928215"/>
+            <inertia ixx="0.00012024" ixy="0.0" ixz="0.0" iyy="0.00012029" iyz="0.00000305" izz="0.00000216"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="meshes/solo12/solo12_lower_leg_left_side.stl"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+        </visual>
+        <!--
+        <collision>
+            <geometry>
+                <cylinder length ="0.19" radius = "0.015"/>
+            </geometry>
+            <origin rpy="0.0 3.141592 0.0" xyz="0.0 0.0 -0.095"/>
+        </collision>
+        <collision>
+            <geometry>
+                <sphere radius = "0.0175"/>
+            </geometry>
+            <origin rpy="0.0 3.141592 0.0" xyz="0.0 0.0 -0.195"/>
+        </collision>
+        -->
+    </link>
+
+
+    <!--!!!!!!!!!!!! Hind Right Leg !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <joint name="torso_to_abduct_hr_j" type="continuous">
+        <axis xyz="1 0 0"/>
+        <origin rpy="0 0 0" xyz="-0.1946 -0.0875 0"/>
+        <parent link="body"/>
+        <child link="abduct_hr"/>
+        <limit effort="18" lower="-1.6" upper="1.6" velocity="40"/>
+    </joint>
+    <link name="abduct_hr">
+        <inertial>
+            <mass value="0.14853845"/>
+            <origin rpy="0 0 0" xyz="0.07870700 -0.01 0."/>
+            <inertia ixx="0.00003024" ixy="-0.00004671" ixz="0.0" iyy="0.00041193" iyz="0.0" izz="0.00041107"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="meshes/solo12/solo12_hip_fe_hr.stl"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="-0.01950 0 0"/>
+        </visual>
+        <!--
+        <collision>
+            <geometry>
+                <cylinder length ="0.02" radius = "0.0475"/>
+            </geometry>
+            <origin rpy="0.0 1.5708 1.5708" xyz="0.055 0.0 0.0"/>
+        </collision>
+        <collision>
+            <geometry>
+                <cylinder length ="0.06" radius = "0.0475"/>
+            </geometry>
+            <origin rpy="1.5708 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </collision>
+        -->
+    </link>
+
+    <joint name="abduct_hr_to_thigh_hr_j" type="continuous">
+        <axis xyz="0 1 0"/>
+        <origin rpy="0 0 0" xyz="0 -0.014 0"/>
+        <parent link="abduct_hr"/>
+        <child link="thigh_hr"/>
+        <limit effort="18" lower="-2.6" upper="2.6" velocity="40"/>
+    </joint>
+    <link name="thigh_hr">
+        <inertial>
+            <mass value="0.14853845"/>
+            <origin rpy="0 0 0" xyz="-0.00001377 -0.01935853 -0.07870700"/>
+            <inertia ixx="0.00041107" ixy="0.0" ixz="0.0" iyy="0.00041193" iyz="-0.00004671" izz="0.00003024"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="meshes/solo12/solo12_upper_leg_right_side.stl"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+        </visual>
+        <!--
+        <collision>
+            <geometry>
+                <cylinder length ="0.21" radius = "0.025"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.105"/>
+        </collision>
+        -->
+    </link>
+
+    <joint name="thigh_hr_to_knee_hr_j" type="continuous">
+        <axis xyz="0 1 0"/>
+        <origin rpy="0 0 0" xyz="0 -0.03745 -0.16"/>
+        <parent link="thigh_hr"/>
+        <child link="shank_hr"/>
+        <limit effort="26" lower="-2.6" upper="2.6" velocity="26"/>
+    </joint>
+    <link name="shank_hr">
+        <inertial>
+            <mass value="0.03070001"/>
+            <origin rpy="0 0 0" xyz="0.0 0.00787644 -0.08928215"/>
+            <inertia ixx="0.00012024" ixy="0.0" ixz="0.0" iyy="0.00012029" iyz="-0.00000305" izz="0.00000216"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <mesh filename="meshes/solo12/solo12_lower_leg_right_side.stl"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+        </visual>
+        <!--
+        <collision>
+            <geometry>
+                <cylinder length ="0.19" radius = "0.015"/>
+            </geometry>
+            <origin rpy="0.0 3.141592 0.0" xyz="0 0 -0.095"/>
+        </collision>
+        <collision>
+            <geometry>
+                <sphere radius = "0.0175"/>
+            </geometry>
+            <origin rpy="0.0 3.141592 0.0" xyz="0.0 0.0 -0.195"/>
+        </collision>
+        -->
+    </link>
+
+    <!-- Add foot links to enable relevent computations, including better collision detection -->
+    <joint name="shank_fl_to_foot_fl" type="fixed">
+        <parent link="shank_fl"/>
+        <child link="LF_FOOT"/>
+        <origin rpy="0 0 0" xyz="0 0.008 -0.16"/>
+    </joint>
+    <link name="LF_FOOT">
+        <collision>
+            <geometry>
+                <sphere radius = "0.0175"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </collision>
+        <inertial>
+            <mass value="0.00693606"/>
+            <origin rpy="0 0 0" xyz="0 0 0.00035767"/>
+            <inertia ixx="0.00000057" ixy="0.0" ixz="0.0" iyy="0.00000084" iyz="0.0" izz="0.00000053"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <sphere radius = "0.0175"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </visual>
+    </link>
+    
+    <joint name="shank_fr_to_foot_fr" type="fixed">
+        <parent link="shank_fr"/>
+        <child link="RF_FOOT"/>
+        <origin rpy="0 0 0" xyz="0 -0.008 -0.16"/>
+    </joint>
+    <link name="RF_FOOT">
+        <collision>
+            <geometry>
+                <sphere radius = "0.0175"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </collision>
+        <inertial>
+            <mass value="0.00693606"/>
+            <origin rpy="0 0 0" xyz="0 0 0.00035767"/>
+            <inertia ixx="0.00000057" ixy="0.0" ixz="0.0" iyy="0.00000084" iyz="0.0" izz="0.00000053"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <sphere radius = "0.0175"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </visual>
+    </link>
+    
+    <joint name="shank_hl_to_foot_hl" type="fixed">
+        <parent link="shank_hl"/>
+        <child link="LH_FOOT"/>
+        <origin rpy="0 0 0" xyz="0 0.008 -0.16"/>
+    </joint>
+    <link name="LH_FOOT">
+        <collision>
+            <geometry>
+                <sphere radius = "0.0175"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </collision>
+        <inertial>
+            <mass value="0.00693606"/>
+            <origin rpy="0 0 0" xyz="0 0 0.00035767"/>
+            <inertia ixx="0.00000057" ixy="0.0" ixz="0.0" iyy="0.00000084" iyz="0.0" izz="0.00000053"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <sphere radius = "0.0175"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </visual>
+    </link>
+    
+    <joint name="shank_hr_to_foot_hr" type="fixed">
+        <parent link="shank_hr"/>
+        <child link="RH_FOOT"/>
+        <origin rpy="0 0 0" xyz="0 -0.008 -0.16"/>
+    </joint>
+    <link name="RH_FOOT">
+        <collision>
+            <geometry>
+                <sphere radius = "0.0175"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </collision>
+        <inertial>
+            <mass value="0.00693606"/>
+            <origin rpy="0 0 0" xyz="0 0 0.00035767"/>
+            <inertia ixx="0.00000057" ixy="0.0" ixz="0.0" iyy="0.00000084" iyz="0.0" izz="0.00000053"/>
+        </inertial>
+        <visual>
+            <geometry>
+                <sphere radius = "0.0175"/>
+            </geometry>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        </visual>
+    </link>
+
+    <!-- Joint Transmissions: Tells Drake that these are actuated -->
+    <transmission name="torso_to_abduct_fl_j_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="torso_to_abduct_fl_j"/>
+        <actuator name="torso_to_abduct_fl_j_actuator"/>
+    </transmission>
+    <transmission name="abduct_fl_to_thigh_fl_j_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="abduct_fl_to_thigh_fl_j"/>
+        <actuator name="abduct_fl_to_thigh_fl_j_actuator"/>
+    </transmission>
+    <transmission name="thigh_fl_to_knee_fl_j_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="thigh_fl_to_knee_fl_j"/>
+        <actuator name="thigh_fl_to_knee_fl_j_actuator"/>
+    </transmission>
+
+    <transmission name="torso_to_abduct_fr_j_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="torso_to_abduct_fr_j"/>
+        <actuator name="torso_to_abduct_fr_j_actuator"/>
+    </transmission>
+    <transmission name="abduct_fr_to_thigh_fr_j_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="abduct_fr_to_thigh_fr_j"/>
+        <actuator name="abduct_fr_to_thigh_fr_j_actuator"/>
+    </transmission>
+    <transmission name="thigh_fr_to_knee_fr_j_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="thigh_fr_to_knee_fr_j"/>
+        <actuator name="thigh_fr_to_knee_fr_j_actuator"/>
+    </transmission>
+
+    <transmission name="torso_to_abduct_hl_j_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="torso_to_abduct_hl_j"/>
+        <actuator name="torso_to_abduct_hl_j_actuator"/>
+    </transmission>
+    <transmission name="abduct_hl_to_thigh_hl_j_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="abduct_hl_to_thigh_hl_j"/>
+        <actuator name="abduct_hl_to_thigh_hl_j_actuator"/>
+    </transmission>
+    <transmission name="thigh_hl_to_knee_hl_j_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="thigh_hl_to_knee_hl_j"/>
+        <actuator name="thigh_hl_to_knee_hl_j_actuator"/>
+    </transmission>
+
+    <transmission name="torso_to_abduct_hr_j_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="torso_to_abduct_hr_j"/>
+        <actuator name="torso_to_abduct_hr_j_actuator"/>
+    </transmission>
+    <transmission name="abduct_hr_to_thigh_hr_j_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="abduct_hr_to_thigh_hr_j"/>
+        <actuator name="abduct_hr_to_thigh_hr_j_actuator"/>
+    </transmission>
+    <transmission name="thigh_hr_to_knee_hr_j_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="thigh_hr_to_knee_hr_j"/>
+        <actuator name="thigh_hr_to_knee_hr_j_actuator"/>
+    </transmission>
+
+</robot>

@@ -34,6 +34,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <towr/models/examples/hyq_model.h>
 #include <towr/models/examples/anymal_model.h>
 #include <towr/models/examples/mini_cheetah_model.h>
+#include <towr/models/examples/biqu_model.h>
+#include <towr/models/examples/huron_model.h>
 
 namespace towr {
 
@@ -61,6 +63,14 @@ RobotModel::RobotModel(Robot robot)
       dynamic_model_   = std::make_shared<MiniCheetahDynamicModel>();
       kinematic_model_ = std::make_shared<MiniCheetahKinematicModel>();
       break;
+    case BiQu:
+      dynamic_model_   = std::make_shared<BiQuDynamicModel>();
+      kinematic_model_ = std::make_shared<BiQuKinematicModel>();
+      break;  
+    case HURON:
+      dynamic_model_   = std::make_shared<HURONDynamicModel>();
+      kinematic_model_ = std::make_shared<HURONKinematicModel>();
+      break;  
     default:
       assert(false); // Error: Robot model not implemented.
       break;

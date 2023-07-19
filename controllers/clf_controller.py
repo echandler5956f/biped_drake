@@ -63,14 +63,14 @@ class CLFController(IDController):
                 [xd_tilde]         [xd_tilde]
         """
         ######### Tuning Parameters #########
-        Q_body_p = 5000.0             # Lyapunov function is based on CARE solution
-        Q_body_pd = 200.0            # corresponding to LQR with running cost 
+        Q_body_p = 5000.0/5             # Lyapunov function is based on CARE solution
+        Q_body_pd = 200.0/5            # corresponding to LQR with running cost 
                                       # eta'*Q*eta + nu'*R*nu
         Q_body_rpy = Q_body_p
         Q_body_rpyd = Q_body_pd
 
-        Q_foot_p = 200.0
-        Q_foot_pd = 20.0
+        Q_foot_p = 200.0/5
+        Q_foot_pd = 20.0/5
 
         r = 1.0
 

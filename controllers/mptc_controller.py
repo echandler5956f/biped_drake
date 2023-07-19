@@ -140,14 +140,14 @@ class MPTCController(BasicController):
 
         """
         ######### Tuning Parameters #########
-        Kp_body_p = 100.0
-        Kd_body_p = 10.0
+        Kp_body_p = 100.0/5
+        Kd_body_p = 10.0/5
 
         Kp_body_rpy = Kp_body_p
         Kd_body_rpy = Kd_body_p
 
-        Kp_foot = 200.0
-        Kd_foot = 20.0
+        Kp_foot = 200.0/5
+        Kd_foot = 20.0/5
 
         w_body = 10.0
         w_foot = 1.0

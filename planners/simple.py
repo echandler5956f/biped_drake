@@ -42,10 +42,14 @@ class BasicTrunkPlanner(LeafSystem):
         standing on all four feet.
         """
         # Foot positions
-        self.output_dict["p_lf"] = np.array([ 0.175, 0.11, 0.0])   # mini cheetah
-        self.output_dict["p_rf"] = np.array([ 0.175,-0.11, 0.0])
-        self.output_dict["p_lh"] = np.array([-0.2,   0.11, 0.0])
-        self.output_dict["p_rh"] = np.array([-0.2,  -0.11, 0.0])
+        self.output_dict["p_lf"] = np.array([ 0.1994, 0.1479, 0.0])   # biqu
+        self.output_dict["p_rf"] = np.array([ 0.1994,-0.1479, 0.0])
+        self.output_dict["p_lh"] = np.array([-0.1994, 0.1479, 0.0])
+        self.output_dict["p_rh"] = np.array([-0.1994,-0.1479, 0.0])
+        #self.output_dict["p_lf"] = np.array([ 0.175, 0.11, 0.0])   # mini cheetah
+        #self.output_dict["p_rf"] = np.array([ 0.175,-0.11, 0.0])
+        #self.output_dict["p_lh"] = np.array([-0.2,   0.11, 0.0])
+        #self.output_dict["p_rh"] = np.array([-0.2,  -0.11, 0.0])
         #self.output_dict["p_lf"] = np.array([ 0.34, 0.19, 0.0])    # anymal
         #self.output_dict["p_rf"] = np.array([ 0.34,-0.19, 0.0])
         #self.output_dict["p_lh"] = np.array([-0.34, 0.19, 0.0])
@@ -71,7 +75,7 @@ class BasicTrunkPlanner(LeafSystem):
 
         # Body pose
         self.output_dict["rpy_body"] = np.array([0.0, 0.0, 0.0])
-        self.output_dict["p_body"] = np.array([0.0, 0.0, 0.3])
+        self.output_dict["p_body"] = np.array([0.0, 0.0, 0.2282])
 
         # Body velocities
         self.output_dict["rpyd_body"] = np.zeros(3)

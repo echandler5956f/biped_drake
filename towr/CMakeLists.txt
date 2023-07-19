@@ -78,7 +78,8 @@ target_include_directories(${PROJECT_NAME}
 #######################
 
 # MPC solve with mini cheetah, sending results over LCM
-find_package(lcm REQUIRED)
+include_directories("/usr/local/include/lcm/")   # lcm includes
+# find_package(lcm REQUIRED)
 add_executable(trunk_mpc trunk_mpc.cpp)
 target_link_libraries(trunk_mpc
     PRIVATE

@@ -1,0 +1,40 @@
+package trunklcm;
+
+struct trunk_state_t
+{
+    double timestamp;
+
+    boolean finished;  // indicate that this is the end of the trajectory
+
+    // Base linear position/velocity/accel
+    double base_p[3];
+    double base_pd[3];
+    double base_pdd[3];
+
+    // Base angular position/velocity/accel
+    double base_rpy[3];
+    double base_rpyd[3];
+    double base_rpydd[3];
+
+    // Foot positions
+    double l_p[3];
+    double r_p[3];
+
+    // Foot velocities
+    double l_pd[3];
+    double r_pd[3];
+    
+    // Foot accelerations
+    double l_pdd[3];
+    double r_pdd[3];
+
+    // Foot contact states
+    boolean l_contact;
+    boolean r_contact;
+
+    // Foot contact forces
+    double l_f[3];
+    double r_f[3];
+
+}
+
